@@ -3,10 +3,13 @@
     <tab-bar-item
       v-for="(item,index) of tabBar"
       :key="index"
-      :iconName="item.iconName"
+      :icon="item.icon"
       :text="item.text"
       :index="index"
       :url='item.url'
+      :active="active"
+      @change="itemChange"
+      :info="item.info"
     ></tab-bar-item>
   </div>
 </template>
@@ -16,29 +19,31 @@ import tabBarItem from './tabBarItem'
 export default {
   data () {
     return {
+      active: 0,
       tabBar: [
         {
-          iconName: 'icon-shouye1',
+          icon: 'icon-shouye1',
           text: '首页',
           url: ''
         },
         {
-          iconName: 'icon-xingqiu1',
+          icon: 'icon-xingqiu1',
           text: '发现',
-          url: 'find'
+          url: 'find',
+          info: '10'
         },
         {
-          iconName: 'icon-tianjia',
+          icon: 'icon-tianjia',
           text: '添加',
           url: 'add'
         },
         {
-          iconName: 'icon-xin',
+          icon: 'icon-xin',
           text: '心情',
           url: 'mood'
         },
         {
-          iconName: 'icon-wode1',
+          icon: 'icon-wode1',
           text: '我的',
           url: 'my'
         }
@@ -47,6 +52,11 @@ export default {
   },
   components: {
     tabBarItem
+  },
+  methods: {
+    itemChange (activeIndex) {
+      this.active = activeIndex
+    }
   }
 }
 </script>
